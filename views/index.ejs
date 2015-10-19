@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>function myFunction() {
+        var x = document.getElementsByName("carlist");
+        console.log(x[0].value)
+        document.getElementById("demo").innerHTML = "<iframe id='ytplayer' type='text/html' width='640' height='390' src='http://www.youtube.com/embed?listType=playlist&list=" + String(x[0].value) + "' frameborder='0'/>";
+      }</script>
+  </head>
+  <body>
+  <header>
+    <h1 class="w100 text-center"><a href="/">YouTube Search</a></h1>
+  </header>
+    <form action="/" method="post" id="yform">
+    <input type="text" name="Searchval" value="" placeholder="Type so mething...">
+    <input type="submit" value="Submit">
+    </form>
+    <%var temp=pval%>
+    <% if (temp != '' && String(temp)!='errorempty') {%>
+    <br>
+  <div class="dropdown_container">
+    <select class="my_dropdown" id="my_dropdown" name="carlist" onchange="myFunction()" style="margin-left: 390px">
+      <%var response=title%>
+      <% var tval=title1%>
+      <%response1=response.split(',')%>
+      <%titleval = tval.split(',')%>
+      <%var fres = response1[0]%>
+      <%for(var i=0;i<response1.length;i++){%>
+      <%var resval = String(response1[i])%>
+      <%var resval1 = String(titleval[i])%>
+      <option value='<%= resval%>' /><%= resval1%> </option>
+      <%}%>
+    </select>
+    </div>
+    <br>
+      <div id="demo">
+    <iframe id="ytplayer" type="text/html" width="640" height="390"
+            src="http://www.youtube.com/embed?listType=playlist&list=<%=fres%>"
+            frameborder="0"/>
+    </div>
+  <%}%>
+  <%if(String(temp)=='errorempty'){%>
+  <p style="margin-left: 450px">Search box is empty!</p>
+  <%}%>
+  </body>
+</html>
